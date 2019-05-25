@@ -41,7 +41,7 @@
   with_items: "{{ rkhunter_additional_config }}"
 
 -  name: perform initial rkhunter setup
-   when: apt_out.changed == True
+   when: apt_out.changed
    block:
     - name: update rkhunter database
       shell: /usr/bin/rkhunter --update --nocolors || true
