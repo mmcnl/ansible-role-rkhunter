@@ -11,12 +11,12 @@
     regexp: "^#?{{ item.regexp }}="
     line: "{{ item.line }}"
   with_items:
-    - { regexp: "CRON_DAILY_RUN", line: 'CRON_DAILY_RUN="yes"' }
-    - { regexp: "CRON_DB_UPDATE", line: 'CRON_DB_UPDATE="yes"' }
-    - { regexp: "DB_UPDATE_EMAIL", line: 'DB_UPDATE_EMAIL="no"' }
-    - { regexp: "REPORT_EMAIL", line: 'REPORT_EMAIL="{{ rkhunter_notification_email }}"' }
-    - { regexp: "APT_AUTOGEN", line: 'APT_AUTOGEN="yes"' }
-    - { regexp: "NICE", line: 'NICE="10"' }
+    - {regexp: "CRON_DAILY_RUN", line: 'CRON_DAILY_RUN="yes"'}
+    - {regexp: "CRON_DB_UPDATE", line: 'CRON_DB_UPDATE="yes"'}
+    - {regexp: "DB_UPDATE_EMAIL", line: 'DB_UPDATE_EMAIL="no"'}
+    - {regexp: "REPORT_EMAIL", line: 'REPORT_EMAIL="{{ rkhunter_notification_email }}"'}
+    - {regexp: "APT_AUTOGEN", line: 'APT_AUTOGEN="yes"'}
+    - {regexp: "NICE", line: 'NICE="10"'}
 
 - name: Update rkhunter config
   lineinfile:
@@ -25,13 +25,13 @@
     line: "{{ item.line }}"
     validate: "/usr/bin/rkhunter --config-check --configfile %s"
   with_items:
-    - { regexp: "WEB_CMD", line: "WEB_CMD=curl" }
-    - { regexp: "APPEND_LOG", line: "APPEND_LOG=1" }
-    - { regexp: "MAIL-ON-WARNING", line: 'MAIL-ON-WARNING=""' }
-    - { regexp: "MAIL_CMD", line: 'MAIL_CMD=""' }
-    - { regexp: "MIRRORS_MODE", line: "MIRRORS_MODE=0" }
-    - { regexp: "UPDATE_MIRRORS", line: "UPDATE_MIRRORS=1" }
-    - { regexp: "PKGMGR", line: "PKGMGR=DPKG" }
+    - {regexp: "WEB_CMD", line: "WEB_CMD=curl"}
+    - {regexp: "APPEND_LOG", line: "APPEND_LOG=1"}
+    - {regexp: "MAIL-ON-WARNING", line: 'MAIL-ON-WARNING=""'}
+    - {regexp: "MAIL_CMD", line: 'MAIL_CMD=""'}
+    - {regexp: "MIRRORS_MODE", line: "MIRRORS_MODE=0"}
+    - {regexp: "UPDATE_MIRRORS", line: "UPDATE_MIRRORS=1"}
+    - {regexp: "PKGMGR", line: "PKGMGR=NONE"}
 
 - name: Add additional rkhunter config lines
   lineinfile:
@@ -40,9 +40,9 @@
     validate: "/usr/bin/rkhunter --config-check --configfile %s"
   with_items: "{{ rkhunter_additional_config }}"
 
--  name: perform initial rkhunter setup
-   when: apt_out.changed
-   block:
+- name: perform initial rkhunter setup
+  when: apt_out.changed
+  block:
     - name: update rkhunter database
       shell: /usr/bin/rkhunter --update --nocolors || true
 
