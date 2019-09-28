@@ -27,11 +27,11 @@
   with_items:
     - {regexp: "WEB_CMD", line: "WEB_CMD=curl"}
     - {regexp: "APPEND_LOG", line: "APPEND_LOG=1"}
-    - {regexp: "MAIL-ON-WARNING", line: 'MAIL-ON-WARNING=""'}
+    - {regexp: "MAIL-ON-WARNING", line: 'MAIL-ON-WARNING="{{ rkhunter_notification_email }}"'}
     - {regexp: "MAIL_CMD", line: 'MAIL_CMD=""'}
     - {regexp: "MIRRORS_MODE", line: "MIRRORS_MODE=0"}
     - {regexp: "UPDATE_MIRRORS", line: "UPDATE_MIRRORS=1"}
-    - {regexp: "PKGMGR", line: "PKGMGR=NONE"}
+    - {regexp: "PKGMGR", line: "PKGMGR=DPKG"}
 
 - name: Add additional rkhunter config lines
   lineinfile:

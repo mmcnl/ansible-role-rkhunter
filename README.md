@@ -10,6 +10,7 @@
               - ALLOWHIDDENDIR=/etc/.git
               - ALLOWHIDDENFILE=/etc/.gitignore
               - ALLOWHIDDENFILE=/etc/.etckeeper
+              - ALLOWDEVFILE=/dev/shm/PostgreSQL.*
 
 ## License
 
