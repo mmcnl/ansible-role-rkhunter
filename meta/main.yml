@@ -2,11 +2,10 @@
 dependencies: []
 
 galaxy_info:
-  role_name: rkhunter
   author: mmcnl
-  description: "set up rkhunter"
+  description: set up rkhunter
   license: MIT
-  min_ansible_version: 2.7
+  min_ansible_version: 2.8
   platforms:
     - name: Ubuntu
       versions:
